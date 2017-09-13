@@ -9,7 +9,12 @@ router.get('/', function(req, res) {
     // send back user object from database
     console.log('logged in', req.user);
     var userInfo = {
-      username : req.user.username
+      username : req.user.username,
+      // firstname : req.user.firstname,
+      // lastname : req.user.lastname,
+      // address : req.user.address,
+      // householdsize : req.user.householdsize,
+      // phonenumber : req.user.phonenumber
     };
     res.send(userInfo);
   } else {
@@ -19,6 +24,8 @@ router.get('/', function(req, res) {
     res.send(false);
   }
 });
+
+
 
 // clear all server session information about this user
 router.get('/logout', function(req, res) {

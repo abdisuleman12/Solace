@@ -1,6 +1,28 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
 
-    <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
+    <h1 id="welcome" class="lead">Welcome, {{uc.userObject.firstname}}!</h1>
+    <button ng-click="showme = !showme"> I Need Help </button>
+    <button> I Want To Help </button>
+    <div ng-show="showme">
+        <form ng-submit="uc.userInformation()">
+            <label for="lastname">First Name:</label>
+            <input type="text" ng-model="uc.user.firstname" />
+            <label for="lastname">Last Name:</label>
+            <input type="text" ng-model="uc.user.lastname" />
+            <label for="lastname">Address:</label>
+            <input type="text" ng-model="uc.user.address" />
+            <label for="lastname">Household size:</label>
+            <input type="number" ng-model="uc.user.householdsize" />
+            <label for="lastname">Phone number:</label>
+            <input type="number" ng-model="uc.user.phonenumber" />
+            <input type="submit" value="Submit Information">
+        </form>
+
+    </div>
+
+    <br>
+
     <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
+
 </div>
