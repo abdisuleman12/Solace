@@ -1,0 +1,10 @@
+<md-input-container>
+    <label>Please Select A Need Below</label>
+    <md-select ng-model="nc.userNeed">
+        <md-option ng-repeat="need in nc.needs.list" ng-value="need">
+            {{need}}
+        </md-option>
+    </md-select>
+</md-input-container>
+
+{{nc.userNeed}}

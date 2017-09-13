@@ -5,9 +5,6 @@ myApp.service('UserService', function ($http, $location) {
 
   self.userObject = {};
 
-
-
-
   self.getuser = function () {
     console.log('UserService -- getuser');
     $http.get('/user').then(function (response) {
@@ -28,9 +25,9 @@ myApp.service('UserService', function ($http, $location) {
   }; // end of get user 
 
   self.userNeedInformation = function (information) {
-    console.log('sending information to db' , information )
-    $http.post('/register/userneedinformation', information).then(function (response) { 
-      console.log( ' post response from register/userneedinformation', response)
+    console.log('sending information to db', information)
+    $http.post('/register/userneedinformation', information).then(function (response) {
+      console.log(' post response from register/userneedinformation', response)
     });
   } // end of user need information 
 
