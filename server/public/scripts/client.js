@@ -1,7 +1,7 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages']);
 
 /// Routes ///
-myApp.config(function ($routeProvider, $locationProvider, $mdIconProvider) {
+myApp.config(function ($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
   console.log('myApp -- config')
   $routeProvider
@@ -37,10 +37,5 @@ myApp.config(function ($routeProvider, $locationProvider, $mdIconProvider) {
     .otherwise({
       redirectTo: 'home'
     });
-
-  $mdIconProvider
-    .iconSet("call", 'img/icons/sets/communication-icons.svg', 24)
-    .iconSet("social", 'img/icons/sets/social-icons.svg', 24);
-
 
 }); // end of congiq 

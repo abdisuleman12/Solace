@@ -1,10 +1,21 @@
 <md-input-container>
     <label>Please Select A Need Below</label>
-    <md-select ng-model="nc.userNeed">
+    <md-select ng-model="nc.userNeed.need">
         <md-option ng-repeat="need in nc.needs.list" ng-value="need">
             {{need}}
         </md-option>
     </md-select>
 </md-input-container>
 
-{{nc.userNeed}}
+<div ng-show="nc.userNeed.need === 'Food'">
+    <h5>Select Food items you need: </h5>
+    <h5>Meats: </h5>
+    <label>Chicken</label>
+    <input type="checkbox" ng-model="nc.userNeed.chicken">
+    <label>Beef: </label>
+    <Input type="checkbox" ng-model="nc.userNeed.beef">
+    <label>Fish: </label>
+    <Input type="checkbox" ng-model="nc.userNeed.fish">
+    <input type="submit" value="Submit">
+
+</div> {{nc.userNeed}}
