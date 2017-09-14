@@ -24,12 +24,17 @@ myApp.service('UserService', function ($http, $location) {
 
   }; // end of get user 
 
-  self.userNeedInformation = function (information) {
+  self.userProfileInformation = function (information) {
     console.log('sending information to db', information)
     $http.post('/register/userneedinformation', information).then(function (response) {
       console.log(' post response from register/userneedinformation', response)
     });
   } // end of user need information 
+
+  self.userNeeds = function (userneeds) {
+    console.log('sending these user needs to db ', userneeds)
+  
+  };
 
   self.logout = function () {
     console.log('UserService -- logout');

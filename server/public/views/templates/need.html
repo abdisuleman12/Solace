@@ -10,12 +10,45 @@
 <div ng-show="nc.userNeed.need === 'Food'">
     <h5>Select Food items you need: </h5>
     <h5>Meats: </h5>
-    <label>Chicken</label>
-    <input type="checkbox" ng-model="nc.userNeed.chicken">
+    <label>Chicken: </label>
+    <input type="checkbox" ng-model="nc.userNeed.meats.chicken">
     <label>Beef: </label>
-    <Input type="checkbox" ng-model="nc.userNeed.beef">
+    <Input type="checkbox" ng-model="nc.userNeed.meats.beef">
     <label>Fish: </label>
-    <Input type="checkbox" ng-model="nc.userNeed.fish">
+    <Input type="checkbox" ng-model="nc.userNeed.meats.fish">
+    <label>Pork: </label>
+    <Input type="checkbox" ng-model="nc.userNeed.meats.pork">
+    <h5>Produce Items: </h5>
+    <label>Fresh Vegetables</label>
+    <input type="checkbox" ng-model="nc.userNeed.produce.vegetables">
+    <label>Fresh Fruits: </label>
+    <Input type="checkbox" ng-model="nc.userNeed.produce.fruits">
+    <h5> Dairy: </h5>
+    <label>Milk: </label>
+    <Input type="checkbox" ng-model="nc.userNeed.dairy.milk">
+    <label>Butter: </label>
+    <Input type="checkbox" ng-model="nc.userNeed.dairy.butter">
+    <br>
+    <br>
+    <button ng-click="nc.addingNeeds()"> Submit Needs </button>
+</div>
+
+
+
+<!-- // clothing ng-show -->
+
+<!-- <div ng-show="nc.userNeed.need === 'Clothing'">
+    <h5>Select Clothing items you need: </h5>
+    <h5>Clothing: </h5>
+    <label>Winter Jackets</label>
+    <input type="checkbox" ng-model="nc.userNeed.winterjackets">
+    <label>Gloves: </label>
+    <Input type="checkbox" ng-model="nc.userNeed.gloves">
+    <label>Winter Hats: </label>
+    <Input type="checkbox" ng-model="nc.userNeed.winterhats">
     <input type="submit" value="Submit">
 
-</div> {{nc.userNeed}}
+
+</div> -->
+
+

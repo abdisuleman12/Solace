@@ -5,8 +5,12 @@ myApp.controller('NeedController', function ($http, $location, UserService) {
     vm.userNeed = {};
 
     vm.needs = {
-        list: ['Food', 'Clothing', 'Medicine', 'Water']
+        list: ['Food']
     };
 
+    vm.addingNeeds = function () {
+        console.log('sending these needs', vm.userNeed);
+        UserService.userNeeds(vm.userNeed)
+    };
 
 });

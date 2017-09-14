@@ -23,9 +23,13 @@ myApp.config(function ($routeProvider, $locationProvider) {
       }
     }).when('/need', {
       templateUrl: '/views/templates/need.html',
-      controller: 'NeedController as nc'
-    })
-    .when('/info', {
+      controller: 'NeedController as nc',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    }).when('/info', {
       templateUrl: '/views/templates/info.html',
       controller: 'InfoController as ic',
       resolve: {
