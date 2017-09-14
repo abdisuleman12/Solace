@@ -41,7 +41,7 @@ router.post('/', function (req, res, next) {
 
 });
 
-
+// adds user profile information to database
 router.post('/userneedinformation', function (req, res, next) {
 
   var saveUserNeedInfo = {
@@ -65,6 +65,38 @@ router.post('/userneedinformation', function (req, res, next) {
 
         if (err) {
           console.log("Error inserting user need information: ", err);
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(201);
+        }
+      });
+  });
+
+});
+
+router.post('/userneeds', function (req, res, next) {
+
+  var saveUserNeeds = {
+    need: req.body.need,
+    chicken: req.body.chicken,
+    beef: req.body.beef,
+    vegetables: req.body.vegetables,
+    milk: req.body.milk
+  };
+  console.log('user needs :', saveUserNeeds);
+
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query("INSERT INTO userneeds (need, chicken, beef, vegetables, milk) VALUES ($1, $2, $3, $4, $5)",
+      [saveUserNeeds.need, saveUserNeeds.chicken, saveUserNeeds.beef, saveUserNeeds.vegetables,saveUserNeeds.milk],
+      function (err, result) {
+        client.end();
+
+        if (err) {
+          console.log("Error inserting userneeds: ", err);
           res.sendStatus(500);
         } else {
           res.sendStatus(201);

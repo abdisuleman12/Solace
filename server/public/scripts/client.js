@@ -29,6 +29,14 @@ myApp.config(function ($routeProvider, $locationProvider) {
           return UserService.getuser();
         }
       }
+    }).when('/thankyou', {
+      templateUrl: '/views/templates/thankyou.html',
+      controller: 'ThankyouController as tc',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
     }).when('/info', {
       templateUrl: '/views/templates/info.html',
       controller: 'InfoController as ic',

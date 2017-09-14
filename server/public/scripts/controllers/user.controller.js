@@ -9,12 +9,11 @@ myApp.controller('UserController', function (UserService, $http) {
   vm.userInformation = function () {
     console.log('User Controller -- inside userInformation function', 
     'sending to service', vm.user)
-    UserService.userNeedInformation(vm.user)
+    UserService.userProfileInformation(vm.user)
   }; // end of user information function 
-
-
-
 }); // end of controller 
+
+
 
 
 
