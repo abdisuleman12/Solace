@@ -10,6 +10,29 @@ router.get('/', function (req, res, next) {
   res.sendFile(path.resolve(__dirname, '../public/views/templates/register.html'));
 });
 
+router.get('/userinformation', function (req, res, next) {
+
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query("SELECT * FROM userneedinformation",
+      function (err, result) {
+        client.end();
+        if (err) {
+          console.log("Error getting data: ", err);
+          res.sendStatus(500);
+        } else {
+          res.send(result.rows);
+          console.log('inside server user information function, data getting sent back to the user service is', result)
+        }
+      });
+  });
+
+});
+
+
 // Handles POST request with new user data
 // Handles POST request with new user data
 router.post('/', function (req, res, next) {

@@ -5,6 +5,8 @@ myApp.service('UserService', function ($http, $location) {
 
   self.userObject = {};
 
+  self.userInformationObject = { list: [] };
+
   self.getuser = function () {
     console.log('UserService -- getuser');
     $http.get('/user').then(function (response) {
@@ -25,23 +27,12 @@ myApp.service('UserService', function ($http, $location) {
   }; // end of get user 
 
 
+// get user information 
   self.getuserinformation = function () {
-    console.log('UserService -- getuser');
-    $http.get('/user').then(function (response) {
-      if (response.data.username) {
-        // user has a curret session on the server
-        self.userObject.userName = response.data.username;
-        console.log('UserService -- getuser -- User Data: ', self.userObject);
-      } else {
-        console.log('UserService -- getuser -- failure');
-        // user has no session, bounce them back to the login page
-        $location.path("/home");
-      }
-    }, function (response) {
-      console.log('UserService -- getuser -- failure: ', response);
-      $location.path("/home");
-    });
-
+    $http.get('/register/userinformation').then(function (response) {
+      console.log('response from get user information', response)
+      self.userInformationObject.list = response.data.rows
+    })
   }; // end of get user 
 
 
