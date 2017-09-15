@@ -31,7 +31,7 @@ myApp.service('UserService', function ($http, $location) {
   self.getuserinformation = function () {
     $http.get('/register/userinformation').then(function (response) {
       console.log('response from get user information', response)
-      self.userInformationObject.list = response.data.rows
+      self.userInformationObject.list = response.data
     })
   }; // end of get user 
 
@@ -39,7 +39,7 @@ myApp.service('UserService', function ($http, $location) {
 
   self.userProfileInformation = function (information) {
     console.log('sending information to db', information)
-    $http.post('/register/userneedinformation', information).then(function (response) {
+    $http.post('/register/userprofileinformation', information).then(function (response) {
       console.log(' post response from register/userneedinformation', response)
       $location.path('/need')
     });

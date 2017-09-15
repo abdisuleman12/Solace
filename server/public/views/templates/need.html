@@ -1,4 +1,4 @@
-<md-input-container>
+z<md-input-container>
     <label>Please Select A Need Below</label>
     <md-select ng-model="nc.userNeed.need">
         <md-option ng-repeat="need in nc.needs.list" ng-value="need">
@@ -7,17 +7,16 @@
     </md-select>
 </md-input-container>
 
-<div ng-show="nc.userNeed.need === 'Food'">
-    <h5>Select Food items you need: </h5>
+<div ng-show="nc.userNeed.need === 'groceries'">
+    <h5>Select grocery items you need: </h5>
     <h5>Meats: </h5>
-    <label>Chicken: </label>
-    <input type="checkbox" ng-model="nc.userNeed.chicken">
-    <label>Beef: </label>
-    <Input type="checkbox" ng-model="nc.userNeed.beef">
-    <label>Fish: </label>
+    <label><input type="checkbox" checklist-model="nc.userNeed.groceries" value="chicken">Chicken: </label>
+    <label><Input type="checkbox" checklist-model="nc.userNeed.groceries" value="beef">Beef: </label>
+        {{nc.userNeed.groceries}}
+    <!-- <label>Fish: </label>
     <Input type="checkbox" ng-model="nc.userNeed.fish">
     <label>Pork: </label>
-    <Input type="checkbox" ng-model="nc.userNeed.pork">
+    <Input type="checkbox" checklist-model="nc.userNeed.pork">
     <h5>Produce Items: </h5>
     <label>Fresh Vegetables</label>
     <input type="checkbox" ng-model="nc.userNeed.vegetables">
@@ -29,7 +28,7 @@
     <label>Butter: </label>
     <Input type="checkbox" ng-model="nc.userNeed.butter">
     <br>
-    <br>
+    <br> -->
     <button ng-click="nc.addingNeeds()"> Submit Needs </button>
 </div>
 

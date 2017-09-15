@@ -1,13 +1,10 @@
-myApp.controller('ThankyouController', function ($http, $location, UserService) {
-    console.log('Thankyou controller created');
+myApp.controller('ThankyouController', function ($http, $location, UserService, NgMap) {
+    console.log('Thankyou controller loaded');
     var vm = this;
-    UserService.getuserinformation()
+    UserService.getuserinformation();
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
     vm.userInformationObject = UserService.userInformationObject
-
-
-
 
 
 });

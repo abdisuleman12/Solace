@@ -2,10 +2,12 @@ myApp.controller('NeedController', function ($http, $location, UserService) {
     console.log('need controller created');
     var vm = this;
 
-    vm.userNeed = {};
+    vm.userNeed = { 
+        groceries : []
+    };
 
     vm.needs = {
-        list: ['Food']
+        list: ['groceries']
     };
 
     vm.addingNeeds = function () {

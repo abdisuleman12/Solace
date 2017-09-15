@@ -17,7 +17,7 @@ router.get('/userinformation', function (req, res, next) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     }
-    client.query("SELECT * FROM userneedinformation",
+    client.query("SELECT * FROM userprofileinformation",
       function (err, result) {
         client.end();
         if (err) {
@@ -25,7 +25,6 @@ router.get('/userinformation', function (req, res, next) {
           res.sendStatus(500);
         } else {
           res.send(result.rows);
-          console.log('inside server user information function, data getting sent back to the user service is', result)
         }
       });
   });
@@ -65,29 +64,33 @@ router.post('/', function (req, res, next) {
 });
 
 // adds user profile information to database
-router.post('/userneedinformation', function (req, res, next) {
-
+router.post('/userprofileinformation', function (req, res, next) {
+  console.log('request coming in from user controller' , req.body)
+  
+  
   var saveUserNeedInfo = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
-    address: req.body.address,
+    address: req.body.address.formatted_address,
+    longitude: req.body.address.longitude,
+    latitude: req.body.address.latitude,
     householdsize: req.body.householdsize,
     phonenumber: req.body.phonenumber
   };
-  console.log('user need informatin :', saveUserNeedInfo);
+  console.log('user profile information :', saveUserNeedInfo);
 
   pool.connect(function (err, client, done) {
     if (err) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     }
-    client.query("INSERT INTO userneedinformation (firstname, lastname, address, householdsize, phonenumber) VALUES ($1, $2, $3, $4, $5)",
-      [saveUserNeedInfo.firstname, saveUserNeedInfo.lastname, saveUserNeedInfo.address, saveUserNeedInfo.householdsize, saveUserNeedInfo.phonenumber],
+    client.query("INSERT INTO userprofileinformation (firstname, lastname, address, longitude, latitude, householdsize, phonenumber) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+      [saveUserNeedInfo.firstname, saveUserNeedInfo.lastname, saveUserNeedInfo.address, saveUserNeedInfo.longitude, saveUserNeedInfo.latitude, saveUserNeedInfo.householdsize, saveUserNeedInfo.phonenumber],
       function (err, result) {
         client.end();
 
         if (err) {
-          console.log("Error inserting user need information: ", err);
+          console.log("Error inserting user profile information: ", err);
           res.sendStatus(500);
         } else {
           res.sendStatus(201);
