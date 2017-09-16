@@ -7,6 +7,8 @@ myApp.service('UserService', function ($http, $location) {
 
   self.userInformationObject = { list: [] };
 
+  
+
   self.getuser = function () {
     console.log('UserService -- getuser');
     $http.get('/user').then(function (response) {

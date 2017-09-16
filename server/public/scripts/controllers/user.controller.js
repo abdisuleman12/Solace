@@ -20,10 +20,10 @@ vm.placeChanged = function() {
       // vm.map.setCenter(vm.place.geometry.location);
       vm.user.address.latitude = vm.place.geometry.location.lat();
       vm.user.address.longitude = vm.place.geometry.location.lng();
-    }
-    NgMap.getMap().then(function(map) {
-      vm.map = map;
-    });
+    };
+    // NgMap.getMap().then(function(map) {
+    //   vm.map = map;
+    // });
 
   vm.userInformation = function () {
     console.log('User Controller -- inside userInformation function', 

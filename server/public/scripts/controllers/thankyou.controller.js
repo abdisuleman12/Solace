@@ -7,4 +7,13 @@ myApp.controller('ThankyouController', function ($http, $location, UserService, 
     vm.userInformationObject = UserService.userInformationObject
 
 
+    
+//  vm.location =  [ vm.userInformationObject.list[0].latitude , vm.userInformationObject.list[0].longitude ]
+
+//  console.log(vm.location);
+ 
+
+
+
+
 });

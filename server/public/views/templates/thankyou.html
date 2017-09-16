@@ -3,13 +3,17 @@
 
 <div class='container'>
 
-<p>thank you for submitting your request</p>
+    <p>thank you for submitting your request</p>
 
 
-<ng-map class='map_canvas' center="[44.97, -93.26]" zoom="12">
-    <marker position="[44.9614, -93.2876]"></marker> </ng-map>
+    <ng-map class='map_canvas' center="[44.97, -93.26]" zoom="12">
+        <marker position="{{tc.location}}"></marker>
+    </ng-map>
 
-firstname : {{tc.userInformationObject.list[0].firstname}}
+
+    <!-- <marker position="[44.9614, -93.2876]"></marker> -->
+
+    <!-- firstname : {{tc.userInformationObject.list[0].firstname}}
 
 lastname : {{tc.userInformationObject.list[0].lastname}}
 
@@ -17,7 +21,10 @@ address : {{tc.userInformationObject.list[0].address}}
 
 householdsize : {{tc.userInformationObject.list[0].householdsize}}
 
-phone number : {{tc.userInformationObject.list[0].phonenumber}}
+phone number : {{tc.userInformationObject.list[0].phonenumber}} -->
+
+    {{tc.userInformationObject.list[0].latitude}}
+    {{tc.userInformationObject.list[0].longitude}}
 
 
 </div>

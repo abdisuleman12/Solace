@@ -12,22 +12,31 @@ router.get('/', function (req, res, next) {
 
 router.get('/userinformation', function (req, res, next) {
 
-  pool.connect(function (err, client, done) {
-    if (err) {
-      console.log("Error connecting: ", err);
-      res.sendStatus(500);
-    }
-    client.query("SELECT * FROM userprofileinformation",
-      function (err, result) {
-        client.end();
-        if (err) {
-          console.log("Error getting data: ", err);
-          res.sendStatus(500);
-        } else {
-          res.send(result.rows);
-        }
-      });
-  });
+
+  if (req.isAuthenticated()) {
+    console.log('req authenticaed username ', req.user.username);
+    var userNameInfo = {
+     username: req.user.username
+    } 
+
+    pool.connect(function (err, client, done) {
+      if (err) {
+        console.log("Error connecting: ", err);
+        res.sendStatus(500);
+      }
+      client.query("SELECT * FROM userprofileinformation",
+        function (err, result) {
+          client.end();
+          if (err) {
+            console.log("Error getting data: ", err);
+            res.sendStatus(500);
+          } else {
+            res.send(result.rows);
+          }
+        });
+    });
+
+  };
 
 });
 
@@ -65,9 +74,10 @@ router.post('/', function (req, res, next) {
 
 // adds user profile information to database
 router.post('/userprofileinformation', function (req, res, next) {
-  console.log('request coming in from user controller' , req.body)
-  
-  
+  console.log('request coming in from user controller', req.body)
+
+
+
   var saveUserNeedInfo = {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
@@ -77,6 +87,12 @@ router.post('/userprofileinformation', function (req, res, next) {
     householdsize: req.body.householdsize,
     phonenumber: req.body.phonenumber
   };
+
+  parseInt(saveUserNeedInfo.longitude);
+  parseInt(saveUserNeedInfo.latitude);
+
+  console.log(saveUserNeedInfo);
+
   console.log('user profile information :', saveUserNeedInfo);
 
   pool.connect(function (err, client, done) {
@@ -98,16 +114,17 @@ router.post('/userprofileinformation', function (req, res, next) {
       });
   });
 
+
+
 });
 
 router.post('/userneeds', function (req, res, next) {
 
+
   var saveUserNeeds = {
     need: req.body.need,
-    chicken: req.body.chicken,
-    beef: req.body.beef,
-    vegetables: req.body.vegetables,
-    milk: req.body.milk
+    groceries: req.body.groceries,
+    username: req.body.username
   };
   console.log('user needs :', saveUserNeeds);
 
@@ -116,8 +133,8 @@ router.post('/userneeds', function (req, res, next) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     }
-    client.query("INSERT INTO userneeds (need, chicken, beef, vegetables, milk) VALUES ($1, $2, $3, $4, $5)",
-      [saveUserNeeds.need, saveUserNeeds.chicken, saveUserNeeds.beef, saveUserNeeds.vegetables,saveUserNeeds.milk],
+    client.query("INSERT INTO userneeds (need, groceries, username) VALUES ($1, $2, $3)",
+      [saveUserNeeds.need, saveUserNeeds.groceries, saveUserNeeds.username],
       function (err, result) {
         client.end();
 
@@ -127,10 +144,14 @@ router.post('/userneeds', function (req, res, next) {
         } else {
           res.sendStatus(201);
         }
-      });
+
+      })
+
   });
 
-});
+}); // end of router post 
+
+
 
 
 module.exports = router;
