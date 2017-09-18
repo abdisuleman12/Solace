@@ -2,12 +2,14 @@ myApp.controller('NeedController', function ($http, $location, UserService) {
     console.log('need controller created');
     var vm = this;
 
+    UserService.getUserInformation();
+    
 
     vm.username = UserService.userObject.userName
     
     vm.userNeed = { 
         groceries : [],
-        username : vm.username
+        
     };
 
     vm.needs = {

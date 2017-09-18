@@ -3,12 +3,18 @@
 
 <div class='container'>
 
+    <!-- "["+{{variable1}}+", "+{{variable2}}+"]" -->
+
     <p>thank you for submitting your request</p>
+    {{tc.userLocation}}
 
+    <!-- <ng-map class='map_canvas' center="[44.97, -93.26]" zoom="6">
+    <marker position="{{tc.markerLocationLatitude}}, {{tc.markerLocationLongitude}}" ></marker>
+    </ng-map> -->
 
-    <ng-map class='map_canvas' center="[44.97, -93.26]" zoom="12">
-        <marker position="{{tc.location}}"></marker>
-    </ng-map>
+     <!-- "{lat: "+{{tc.userLocation.coordinates[0].latitude}}+", lng: "+{{tc.userLocation.coordinates[0].longitude}}+"}"  -->
+
+    <!-- "["+{{tc.userLocation.coordinates[0].latitude}}+ ","+{{tc.userLocation.coordinates[0].longitude}}+"]" -->
 
 
     <!-- <marker position="[44.9614, -93.2876]"></marker> -->
@@ -23,8 +29,6 @@ householdsize : {{tc.userInformationObject.list[0].householdsize}}
 
 phone number : {{tc.userInformationObject.list[0].phonenumber}} -->
 
-    {{tc.userInformationObject.list[0].latitude}}
-    {{tc.userInformationObject.list[0].longitude}}
 
 
 </div>

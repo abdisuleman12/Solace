@@ -10,41 +10,10 @@ router.get('/', function (req, res, next) {
   res.sendFile(path.resolve(__dirname, '../public/views/templates/register.html'));
 });
 
-router.get('/userinformation', function (req, res, next) {
-
-
-  if (req.isAuthenticated()) {
-    console.log('req authenticaed username ', req.user.username);
-    var userNameInfo = {
-     username: req.user.username
-    } 
-
-    pool.connect(function (err, client, done) {
-      if (err) {
-        console.log("Error connecting: ", err);
-        res.sendStatus(500);
-      }
-      client.query("SELECT * FROM userprofileinformation",
-        function (err, result) {
-          client.end();
-          if (err) {
-            console.log("Error getting data: ", err);
-            res.sendStatus(500);
-          } else {
-            res.send(result.rows);
-          }
-        });
-    });
-
-  };
-
-});
-
-
 // Handles POST request with new user data
 // Handles POST request with new user data
 router.post('/', function (req, res, next) {
-
+  console.log('entire request inside register route' , req.body)
   var saveUser = {
     username: req.body.username,
     password: encryptLib.encryptPassword(req.body.password),
@@ -74,11 +43,13 @@ router.post('/', function (req, res, next) {
 
 // adds user profile information to database
 router.post('/userprofileinformation', function (req, res, next) {
-  console.log('request coming in from user controller', req.body)
+  console.log('id coming in from user.service to get inserted into db', req.body.user_id)
+
 
 
 
   var saveUserNeedInfo = {
+    user_id: req.body.user_id,
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     address: req.body.address.formatted_address,
@@ -91,17 +62,15 @@ router.post('/userprofileinformation', function (req, res, next) {
   parseInt(saveUserNeedInfo.longitude);
   parseInt(saveUserNeedInfo.latitude);
 
-  console.log(saveUserNeedInfo);
-
-  console.log('user profile information :', saveUserNeedInfo);
+  console.log('user profile information in server' , saveUserNeedInfo);
 
   pool.connect(function (err, client, done) {
     if (err) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     }
-    client.query("INSERT INTO userprofileinformation (firstname, lastname, address, longitude, latitude, householdsize, phonenumber) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-      [saveUserNeedInfo.firstname, saveUserNeedInfo.lastname, saveUserNeedInfo.address, saveUserNeedInfo.longitude, saveUserNeedInfo.latitude, saveUserNeedInfo.householdsize, saveUserNeedInfo.phonenumber],
+    client.query("INSERT INTO userprofileinformation (user_id, firstname, lastname, address, longitude, latitude, householdsize, phonenumber) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
+      [saveUserNeedInfo.user_id, saveUserNeedInfo.firstname, saveUserNeedInfo.lastname, saveUserNeedInfo.address, saveUserNeedInfo.longitude, saveUserNeedInfo.latitude, saveUserNeedInfo.householdsize, saveUserNeedInfo.phonenumber],
       function (err, result) {
         client.end();
 
@@ -124,7 +93,6 @@ router.post('/userneeds', function (req, res, next) {
   var saveUserNeeds = {
     need: req.body.need,
     groceries: req.body.groceries,
-    username: req.body.username
   };
   console.log('user needs :', saveUserNeeds);
 
@@ -133,8 +101,8 @@ router.post('/userneeds', function (req, res, next) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     }
-    client.query("INSERT INTO userneeds (need, groceries, username) VALUES ($1, $2, $3)",
-      [saveUserNeeds.need, saveUserNeeds.groceries, saveUserNeeds.username],
+    client.query("INSERT INTO userneeds (need, groceries) VALUES ($1, $2)",
+      [saveUserNeeds.need, saveUserNeeds.groceries],
       function (err, result) {
         client.end();
 

@@ -3,18 +3,21 @@ myApp.service('UserService', function ($http, $location) {
 
   var self = this;
 
-  self.userObject = {};
+  self.userObject = {details: {}};
+
 
   self.userInformationObject = { list: [] };
 
-  
+  self.userLocation = {coordinates: {}};
+
+
 
   self.getuser = function () {
     console.log('UserService -- getuser');
     $http.get('/user').then(function (response) {
       if (response.data.username) {
         // user has a curret session on the server
-        self.userObject.userName = response.data.username;
+        self.userObject.details = response.data;
         console.log('UserService -- getuser -- User Data: ', self.userObject);
       } else {
         console.log('UserService -- getuser -- failure');
@@ -29,11 +32,18 @@ myApp.service('UserService', function ($http, $location) {
   }; // end of get user 
 
 
-// get user information 
-  self.getuserinformation = function () {
-    $http.get('/register/userinformation').then(function (response) {
+  // get user information 
+  self.getUserInformation = function () {
+    $http.get('/user/userinformation').then(function (response) {
       console.log('response from get user information', response)
       self.userInformationObject.list = response.data
+    })
+  }; // end of get user 
+
+  self.getUserLocation = function () {
+    $http.get('/user/userlocation').then(function (response) {
+      self.userLocation.coordinates = response.data;
+      console.log('UserService -- getuserlocation -- User Location Data: ', self.userLocation.coordinates)
     })
   }; // end of get user 
 
