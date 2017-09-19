@@ -6,6 +6,7 @@ var pool = require('../modules/pool.js');
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function (req, res) {
   console.log('get /user route');
+  console.log('req user in user route', req.user)
   // check if logged in
   if (req.isAuthenticated()) {
     // send back user object from database
@@ -38,7 +39,7 @@ router.get('/userinformation', function (req, res, next) {
       }
       client.query("SELECT * FROM userprofileinformation",
         function (err, result) {
-          client.end();
+          done();
           if (err) {
             console.log("Error getting data: ", err);
             res.sendStatus(500);
@@ -66,7 +67,7 @@ router.get('/userlocation', function (req, res, next) {
       } 
       client.query("SELECT longitude, latitude FROM userprofileinformation WHERE user_id = $1" , [userid],
         function (err, result) {
-          client.end();
+          done();
           if (err) {
             console.log("Error getting data: ", err);
             res.sendStatus(500);

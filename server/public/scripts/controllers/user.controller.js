@@ -1,20 +1,14 @@
-myApp.controller('UserController', function (UserService, $http, NgMap) {
+myApp.controller('UserController', function (UserService, $http, NgMap, $route) {
   console.log('UserController created');
   var vm = this;
 
-  UserService.getuser();
-
+  // UserService.getuser( );
+  
   vm.userService = UserService;
   vm.userObject = UserService.userObject;
   vm.userInfo = UserService.userInformationObject;
-  vm.user_id = vm.userObject.details.user_id
 
-  console.log('userObject', vm.userObject)
-
-  vm.user = {
-    
-    user_id : vm.user_id
-  }
+  vm.user = {}
 
 
   vm.placeChanged = function () {
@@ -31,8 +25,9 @@ myApp.controller('UserController', function (UserService, $http, NgMap) {
   // });
 
   vm.userInformation = function () {
+    vm.user.user_id  = vm.userObject.details.user_id;
     console.log('User Controller -- inside userInformation function',
-      'sending to service', vm.user)
+      'sending to service',vm.user)
     UserService.userProfileInformation(vm.user)
   }; // end of user information function 
 }); // end of controller 

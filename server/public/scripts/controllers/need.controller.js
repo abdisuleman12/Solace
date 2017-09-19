@@ -2,7 +2,7 @@ myApp.controller('NeedController', function ($http, $location, UserService) {
     console.log('need controller created');
     var vm = this;
 
-    UserService.getUserInformation();
+    // UserService.getUserInformation();
     
 
     vm.username = UserService.userObject.userName

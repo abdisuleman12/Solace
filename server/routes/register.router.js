@@ -28,7 +28,7 @@ router.post('/', function (req, res, next) {
     client.query("INSERT INTO users (username, password) VALUES ($1, $2) RETURNING id",
       [saveUser.username, saveUser.password],
       function (err, result) {
-        client.end();
+        done();
 
         if (err) {
           console.log("Error inserting data: ", err);
@@ -72,7 +72,7 @@ router.post('/userprofileinformation', function (req, res, next) {
     client.query("INSERT INTO userprofileinformation (user_id, firstname, lastname, address, longitude, latitude, householdsize, phonenumber) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
       [saveUserNeedInfo.user_id, saveUserNeedInfo.firstname, saveUserNeedInfo.lastname, saveUserNeedInfo.address, saveUserNeedInfo.longitude, saveUserNeedInfo.latitude, saveUserNeedInfo.householdsize, saveUserNeedInfo.phonenumber],
       function (err, result) {
-        client.end();
+        done();
 
         if (err) {
           console.log("Error inserting user profile information: ", err);
@@ -104,7 +104,7 @@ router.post('/userneeds', function (req, res, next) {
     client.query("INSERT INTO userneeds (need, groceries) VALUES ($1, $2)",
       [saveUserNeeds.need, saveUserNeeds.groceries],
       function (err, result) {
-        client.end();
+        done();
 
         if (err) {
           console.log("Error inserting userneeds: ", err);

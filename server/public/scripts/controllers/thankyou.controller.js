@@ -2,20 +2,26 @@ myApp.controller('ThankyouController', function ($http, $location, UserService, 
     console.log('Thankyou controller loaded');
     var vm = this;
 
+UserService.getUserLocation();
+    // UserService.getUserInformation();
+    
 
-    UserService.getUserInformation();
-    UserService.getUserLocation();
-
-    vm.userService = UserService;
+    // vm.userService = UserService;
     vm.userObject = UserService.userObject;
-    vm.userInformationObject = UserService.userInformationObject
+    // vm.userInformationObject = UserService.userInformationObject
     vm.userLocation = UserService.userLocation
-    // vm.markerLocationLongitude = vm.userLocation
-    // vm.markerLocationLatitude = vm.userLocation.coordinates[0].latitude;
-    // vm.markerLocation = ['45.082127000', '-93.227247000'];
+    vm.markerLocationLongitude = vm.userLocation.coordinates[0].longitude;
+    vm.markerLocationLatitude = vm.userLocation.coordinates[0].latitude;
+//  vm.markerLocation = ['45.082127000', '-93.227247000'];
 
-    console.log('coordinates', vm.userLocation)
+    // console.log('coordinates', vm.markerLocationLongitude, vm.markerLocationLatitude  )
+    console.log('coordinate', UserService.userLocation);
 
+    
+
+
+    // console.log('coordinates', vm.userLocation[0].longitude, vm.userLocation[0].latitude);
+    
 
 
 

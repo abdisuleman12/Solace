@@ -1,12 +1,13 @@
 <div ng-include="'views/partials/nav.html'"></div>
-
-
+{{uc.userObject.details}}
+{{uc.user}}
 <div class="container">
 
     <h1 id="welcome" class="lead">Welcome, {{uc.userService.userObject.details.username }}!</h1>
     <md-button class="md-raised md-primary" ng-click="showme = !showme"> I Need Help </md-button>
     <md-button class="md-raised md-primary"> I Want To Help </md-button>
     <div layout="row" layout-padding ng-show="showme">
+        {{uc.user_id}}
         <md-card>
         <form ng-submit="uc.userInformation()">
             <md-input-container class="md-block">

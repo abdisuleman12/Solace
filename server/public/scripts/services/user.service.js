@@ -1,10 +1,9 @@
-myApp.service('UserService', function ($http, $location) {
+myApp.service('UserService', function ($http, $location, $route) {
   console.log('UserService Loaded');
 
   var self = this;
 
   self.userObject = {details: {}};
-
 
   self.userInformationObject = { list: [] };
 
