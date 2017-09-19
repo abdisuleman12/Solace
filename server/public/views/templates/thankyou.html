@@ -11,10 +11,11 @@
 
     <!-- {{tc.markerLocationLatitude}}
     {{tc.markerLocationLongitude}} -->
-
+    <div ng-if ="tc.markerLocationLatitude  && tc.markerLocationLatitude" >
     <ng-map class='map_canvas' center="[44.97, -93.26]" zoom="6">
         <marker position="{{tc.markerLocationLatitude}}, {{tc.markerLocationLongitude}}"></marker>
     </ng-map>
+    </div>
 
     <!-- "{lat: "+{{tc.userLocation.coordinates[0].latitude}}+", lng: "+{{tc.userLocation.coordinates[0].longitude}}+"}"  -->
 

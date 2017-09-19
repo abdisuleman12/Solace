@@ -1,4 +1,6 @@
-z<md-input-container>
+<div ng-include="'views/partials/nav.html'"></div>
+
+<md-input-container>
     <label>Please Select A Need Below</label>
     <md-select ng-model="nc.userNeed.need">
         <md-option ng-repeat="need in nc.needs.list" ng-value="need">

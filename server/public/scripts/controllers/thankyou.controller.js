@@ -9,9 +9,12 @@ UserService.getUserLocation();
     // vm.userService = UserService;
     vm.userObject = UserService.userObject;
     // vm.userInformationObject = UserService.userInformationObject
-    vm.userLocation = UserService.userLocation
-    vm.markerLocationLongitude = vm.userLocation.coordinates[0].longitude;
-    vm.markerLocationLatitude = vm.userLocation.coordinates[0].latitude;
+    vm.userLocation = UserService.userLocation;
+    vm.longitude =  vm.userLocation.coordinates[0].longitude;
+    vm.latitude =  vm.userLocation.coordinates[0].latitude;
+    
+    vm.markerLocationLongitude = vm.longitude;
+    vm.markerLocationLatitude = vm.latitude;
 //  vm.markerLocation = ['45.082127000', '-93.227247000'];
 
     // console.log('coordinates', vm.markerLocationLongitude, vm.markerLocationLatitude  )

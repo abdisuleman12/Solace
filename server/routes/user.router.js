@@ -27,17 +27,19 @@ router.get('/', function (req, res) {
 router.get('/userinformation', function (req, res, next) {
   // check if logged in
   if (req.isAuthenticated()) {
-    console.log('req authenticaed username ', req.user.username);
+    var userid = req.user.id
+    
     var userNameInfo = {
-      username: req.user.username
+      username: req.user.username,
+      
     }
-
+    console.log('req.user in userinformation ', req.user.username);
     pool.connect(function (err, client, done) {
       if (err) {
         console.log("Error connecting: ", err);
         res.sendStatus(500);
       }
-      client.query("SELECT * FROM userprofileinformation",
+      client.query("SELECT * FROM userprofileinformation WHERE user_id = $1", [userid],
         function (err, result) {
           done();
           if (err) {
