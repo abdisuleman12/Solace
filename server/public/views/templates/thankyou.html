@@ -6,21 +6,26 @@
     <!-- "["+{{variable1}}+", "+{{variable2}}+"]" -->
 
     <p>thank you for submitting your request</p>
-    {{tc.userNeeds.needs}}
+    
+    {{tc.userNeeds.needs[0].need}}
 
     <!-- {{tc.markerLocationLatitude}}
     {{tc.markerLocationLongitude}} -->
 
-    <div ng-if="tc.markerLocationLatitude && tc.markerLocationLatitude">
-        <ng-map default-style="true" id= "map" class='map_canvas' center="[44.97, -93.26]" zoom="6">
-            <marker on-click="tc.showDeets(tc.userInformationObject.list[0])" position="{{tc.markerLocationLatitude}}, {{tc.markerLocationLongitude}}"></marker>
+    <div ng-if="tc.userLocation.coordinates[0].longitude && tc.userLocation.coordinates[0].latitude">
+        <ng-map default-style="true" id= "map" class='map_canvas' center="[44.97, -93.26]" zoom="10">
+            <marker on-click="tc.showDeets(tc.userInformationObject.list[0])" position="{{tc.userLocation.coordinates[0].latitude}}, {{tc.userLocation.coordinates[0].longitude}}"></marker>
             <info-window id='InfoWindow'>
                 <div ng-non-bindable="">
                     {{tc.userInformationObject.list[0].firstname}}
                     <br> {{tc.userInformationObject.list[0].lastname}}
                     <br> {{tc.userInformationObject.list[0].phonenumber}}
                     <br> {{tc.userInformationObject.list[0].address}}
-                    <a href="link">Food Request</a><br>
+                    <div ng-click="show = !show">Emergency Request: {{tc.userNeeds.needs[0].need}}</div> 
+                    
+                     <div ng-if ="show" > {{tc.userNeeds.needs[0].groceries}} </div>
+                    
+                
                     
 
 

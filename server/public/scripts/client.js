@@ -32,9 +32,12 @@ myApp.config(function ($routeProvider, $locationProvider) {
     }).when('/thankyou', {
       templateUrl: '/views/templates/thankyou.html',
       controller: 'ThankyouController as tc',
-      resolve: {
-        getuser: function (UserService) {
-          return UserService.getuser();
+       resolve: {
+      //   getUserInformation: function (UserService) {
+      //     return UserService.getUserInformation();
+      //   }, 
+        getUserLocation: function (UserService) {
+          return UserService.getUserLocation();
         }
       }
     }).when('/info', {
