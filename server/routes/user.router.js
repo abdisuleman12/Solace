@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
     // send back user object from database
     var userInfo = {
       username: req.user.username,
-      user_id : req.user.id
+      user_id: req.user.id
     };
     console.log('user info inside user route sending back to service', userInfo)
     res.send(userInfo);
@@ -28,10 +28,10 @@ router.get('/userinformation', function (req, res, next) {
   // check if logged in
   if (req.isAuthenticated()) {
     var userid = req.user.id
-    
+
     var userNameInfo = {
       username: req.user.username,
-      
+
     }
     console.log('req.user in userinformation ', req.user.username);
     pool.connect(function (err, client, done) {
@@ -58,7 +58,7 @@ router.get('/userinformation', function (req, res, next) {
 router.get('/userlocation', function (req, res, next) {
   // check if logged in
   if (req.isAuthenticated()) {
-    var userid =  req.user.id;
+    var userid = req.user.id;
 
     console.log('req user id', req.user)
 
@@ -66,8 +66,8 @@ router.get('/userlocation', function (req, res, next) {
       if (err) {
         console.log("Error connecting: ", err);
         res.sendStatus(500);
-      } 
-      client.query("SELECT longitude, latitude FROM userprofileinformation WHERE user_id = $1" , [userid],
+      }
+      client.query("SELECT longitude, latitude FROM userprofileinformation WHERE user_id = $1", [userid],
         function (err, result) {
           done();
           if (err) {
@@ -75,6 +75,35 @@ router.get('/userlocation', function (req, res, next) {
             res.sendStatus(500);
           } else {
             console.log('location rows getting sent to getuserlocation in user service', result.rows)
+            res.send(result.rows);
+
+          }
+        });
+    });
+
+  };
+
+});
+
+router.get('/userneeds', function (req, res, next) {
+  // check if logged in
+  if (req.isAuthenticated()) {
+    var userid = req.user.id;
+
+    console.log('req user id', req.user)
+
+    pool.connect(function (err, client, done) {
+      if (err) {
+        console.log("Error connecting: ", err);
+        res.sendStatus(500);
+      }
+      client.query("SELECT * FROM userneeds WHERE user_id = $1", [userid],
+        function (err, result) {
+          done();
+          if (err) {
+            console.log("Error getting data: ", err);
+            res.sendStatus(500);
+          } else {
             res.send(result.rows);
 
           }

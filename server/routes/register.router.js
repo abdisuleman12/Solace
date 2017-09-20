@@ -89,6 +89,7 @@ router.post('/userprofileinformation', function (req, res, next) {
 
 router.post('/userneeds', function (req, res, next) {
 
+  var user_id = req.body.user_id
 
   var saveUserNeeds = {
     need: req.body.need,
@@ -101,8 +102,8 @@ router.post('/userneeds', function (req, res, next) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     }
-    client.query("INSERT INTO userneeds (need, groceries) VALUES ($1, $2)",
-      [saveUserNeeds.need, saveUserNeeds.groceries],
+    client.query("INSERT INTO userneeds (user_id, need, groceries) VALUES ($1, $2, $3)",
+      [user_id, saveUserNeeds.need, saveUserNeeds.groceries],
       function (err, result) {
         done();
 

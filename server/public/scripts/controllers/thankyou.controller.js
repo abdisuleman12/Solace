@@ -2,40 +2,39 @@ myApp.controller('ThankyouController', function ($http, $location, UserService, 
     console.log('Thankyou controller loaded');
     var vm = this;
 
-UserService.getUserLocation();
-    // UserService.getUserInformation();
-    
+    UserService.getUserLocation();
+    UserService.getUserInformation();
+    UserService.getUserNeeds();
+
+
 
     // vm.userService = UserService;
     vm.userObject = UserService.userObject;
-    // vm.userInformationObject = UserService.userInformationObject
+    vm.userInformationObject = UserService.userInformationObject
     vm.userLocation = UserService.userLocation;
-    vm.longitude =  vm.userLocation.coordinates[0].longitude;
-    vm.latitude =  vm.userLocation.coordinates[0].latitude;
-    
+    vm.userNeeds = UserService.userNeeds
+    vm.longitude = vm.userLocation.coordinates[0].longitude;
+    vm.latitude = vm.userLocation.coordinates[0].latitude;
+
+    vm.map = {};
+    NgMap.getMap("map").then(function (map) {
+        console.log('this is that map', map);
+        vm.map = map;
+    });
+
+    vm.showDeets = function (e, user) {
+        vm.userInformationObject.user = user 
+        console.log('user information object in show deets', vm.userInformationObject.user)
+        vm.map.showInfoWindow('InfoWindow', this)
+    }
+
+
     vm.markerLocationLongitude = vm.longitude;
     vm.markerLocationLatitude = vm.latitude;
-//  vm.markerLocation = ['45.082127000', '-93.227247000'];
 
-    // console.log('coordinates', vm.markerLocationLongitude, vm.markerLocationLatitude  )
     console.log('coordinate', UserService.userLocation);
-
-    
-
-
-    // console.log('coordinates', vm.userLocation[0].longitude, vm.userLocation[0].latitude);
-    
-
-
-
-
-
-    // vm.location = [vm.userInformationObject.list[0].latitude, vm.userInformationObject.list[0].longitude]
-
-
-
-
-
+    console.log('user information', vm.userInformationObject)
+    console.log('user needs', vm.userNeeds.needs )
 
 
 });

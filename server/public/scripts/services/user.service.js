@@ -3,11 +3,13 @@ myApp.service('UserService', function ($http, $location, $route) {
 
   var self = this;
 
-  self.userObject = {details: {}};
+  self.userObject = { details: {} };
 
   self.userInformationObject = { list: [] };
 
-  self.userLocation = {coordinates: {}};
+  self.userLocation = { coordinates: {} };
+
+  self.userNeeds = { needs: {} };
 
 
 
@@ -56,11 +58,19 @@ myApp.service('UserService', function ($http, $location, $route) {
     });
   } // end of user need information 
 
+  // post new user needs into userneeds table 
   self.userNeeds = function (userneeds) {
     console.log('sending these user needs to db ', userneeds)
     $http.post('/register/userneeds', userneeds).then(function (response) {
       console.log('post response from register/userneeds', response)
       $location.path('/thankyou')
+    });
+  };
+
+  self.getUserNeeds = function () {
+    $http.get('/user/userneeds').then(function (response) {
+      self.userNeeds.needs = response.data
+      console.log('response data from ', response)
     });
   };
 

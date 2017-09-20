@@ -3,13 +3,11 @@ myApp.controller('NeedController', function ($http, $location, UserService) {
     var vm = this;
 
     // UserService.getUserInformation();
-    
 
-    vm.username = UserService.userObject.userName
-    
-    vm.userNeed = { 
-        groceries : [],
-        
+
+
+    vm.userNeed = {
+        groceries: [],
     };
 
     vm.needs = {
@@ -17,6 +15,7 @@ myApp.controller('NeedController', function ($http, $location, UserService) {
     };
 
     vm.addingNeeds = function () {
+        vm.userNeed.user_id = UserService.userObject.details.user_id
         console.log('sending these needs', vm.userNeed);
         UserService.userNeeds(vm.userNeed)
     };
