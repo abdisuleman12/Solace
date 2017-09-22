@@ -85,6 +85,36 @@ router.get('/userlocation', function (req, res, next) {
 
 });
 
+
+router.get('/allrequestinformation', function (req, res, next) {
+  // check if logged in
+  if (req.isAuthenticated()) {
+    var userid = req.user.id;
+
+    console.log('req user', req.user)
+
+    pool.connect(function (err, client, done) {
+      if (err) {
+        console.log("Error connecting: ", err);
+        res.sendStatus(500);
+      }
+      client.query("SELECT * FROM userprofileinformation JOIN userneeds ON userprofileinformation.user_id = userneeds.user_id ",
+        function (err, result) {
+          done();
+          if (err) {
+            console.log("Error getting data: ", err);
+            res.sendStatus(500);
+          } else {
+            res.send(result.rows);
+
+          }
+        });
+    });
+
+  };
+
+});
+
 router.get('/userneeds', function (req, res, next) {
   // check if logged in
   if (req.isAuthenticated()) {
@@ -113,6 +143,61 @@ router.get('/userneeds', function (req, res, next) {
   };
 
 });
+
+router.put('/updateneeds/:id', function(req, res) {
+  console.log('put /user/updateneeds route', req.body);
+
+
+  // pool.connect(function(err, client, done) {
+  //   if(err) {
+  //     console.log("Error connecting to db: ", err);
+  //     res.sendStatus(500);
+  //     next(err); // verfiy what this line is doing
+  //   } else {
+  //     // TO DO FIGURE OUT WHY THIS ISN'T RETURNING
+  //   var queryText = 'UPDATE "cravings" SET "strength_of_desire" = $1, "location" = $2, "notes" = $3 WHERE "id" = $4;';
+  //   client.query(queryText, [upCrave.desire, upCrave.location, upCrave.notes, upCrave.crave_id], function (errorMakingQuery, result) {
+  //     done();
+  //     if(errorMakingQuery) {
+  //       console.log('Attempted to query with', queryText);
+  //       console.log('Error making query', errorMakingQuery);
+  //       res.sendStatus(500);
+  //     } else {
+  //       console.log('/crave result:', result.rows);
+  //       // Send back the results
+  //       res.sendStatus(200);
+  //     }
+  //   });
+  //   }
+  // });
+
+});
+
+router.delete('/deleteuserneeds/:id', function (req, res) {
+  console.log('id inside delete userneeds' , req.params.id)
+  console.log('/deleteuserneeds route', req.body);
+
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log("Error connecting to db: ", err);
+      res.sendStatus(500);
+    } else {
+      var queryText = 'DELETE FROM "userneeds" WHERE "user_id" = $1';
+      client.query(queryText, [req.params.id], function (errorMakingQuery, result) {
+        done();
+        if (errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query', errorMakingQuery);
+          res.sendStatus(500);
+        } else {
+          // Send back the results
+          res.sendStatus(200);
+        }
+      });
+    }
+  });
+});
+
 
 // clear all server session information about this user
 router.get('/logout', function (req, res) {

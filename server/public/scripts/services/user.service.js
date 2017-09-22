@@ -11,6 +11,8 @@ myApp.service('UserService', function ($http, $location, $route) {
 
   self.userNeeds = { needs: {} };
 
+  self.allUserInformationInDb = { list: [] };
+
 
 
   self.getuser = function () {
@@ -48,8 +50,6 @@ myApp.service('UserService', function ($http, $location, $route) {
     })
   }; // end of get user 
 
-
-
   self.userProfileInformation = function (information) {
     console.log('sending information to db', information)
     $http.post('/register/userprofileinformation', information).then(function (response) {
@@ -70,9 +70,26 @@ myApp.service('UserService', function ($http, $location, $route) {
   self.getUserNeeds = function () {
     $http.get('/user/userneeds').then(function (response) {
       self.userNeeds.needs = response.data
-      console.log('response data from ', response)
+      console.log('needs data from /user/userneeds ', response.data)
     });
   };
+
+  self.allUserInformation = function () {
+    $http.get('/user/allrequestinformation').then(function (response) {
+      self.allUserInformationInDb.list = response.data
+      console.log('all user data in service ', self.allUserInformationInDb.list)
+    });
+  };
+
+
+  self.deleteUserNeeds = function (userid) {
+    console.log('user id getting deleted ', userid)
+    $http.delete('user/deleteuserneeds/' + userid).then(function (response) {
+      console.log('post response from delete user needs route', response);
+      self.getUserInformation();
+      $location.path("/user");
+    })
+  }
 
   self.logout = function () {
     console.log('UserService -- logout');

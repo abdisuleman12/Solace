@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMap', 'checklist-model']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMap', 'checklist-model', 'ngAlerts', 'ui.bootstrap']);
 
 /// Routes ///
 myApp.config(function ($routeProvider, $locationProvider) {
@@ -32,12 +32,39 @@ myApp.config(function ($routeProvider, $locationProvider) {
     }).when('/thankyou', {
       templateUrl: '/views/templates/thankyou.html',
       controller: 'ThankyouController as tc',
-       resolve: {
-      //   getUserInformation: function (UserService) {
-      //     return UserService.getUserInformation();
-      //   }, 
+      resolve: {
         getUserLocation: function (UserService) {
           return UserService.getUserLocation();
+        }
+      }
+    }).when('/help', {
+      templateUrl: '/views/templates/help.html',
+      controller: 'HelpController as hc',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        },
+        allUserInformation: function (UserService) {
+          return UserService.allUserInformation();
+        }
+      }
+    }).when('/updateneed', {
+      templateUrl: '/views/templates/updateneed.html',
+      controller: 'NeedController as nc',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    }).when('/currentneeds', {
+      templateUrl: '/views/templates/currentneeds.html',
+      controller: 'CurrentNeedsController as cn',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        },
+        getUserNeeds: function (UserService) {
+          return UserService.getUserNeeds();
         }
       }
     }).when('/info', {

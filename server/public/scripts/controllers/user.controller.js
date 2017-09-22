@@ -8,7 +8,7 @@ myApp.controller('UserController', function (UserService, $http, NgMap, $route) 
   vm.userObject = UserService.userObject;
   vm.userInfo = UserService.userInformationObject;
 
-  vm.user = {}
+  vm.user = {};
 
 
   vm.placeChanged = function () {

@@ -1,17 +1,14 @@
-myApp.controller('ThankyouController', function ($http, $location, UserService, NgMap) {
+myApp.controller('ThankyouController', function ($http, $location, UserService, NgMap, ngAlertsMngr) {
     console.log('Thankyou controller loaded');
     var vm = this;
 
     UserService.getUserInformation();
     UserService.getUserNeeds();
 
-    // vm.userService = UserService;
     vm.userObject = UserService.userObject;
-    vm.userInformationObject = UserService.userInformationObject
+    vm.userInformationObject = UserService.userInformationObject;
     vm.userLocation = UserService.userLocation;
-    vm.userNeeds = UserService.userNeeds
-    // vm.markerLocationLongitude = vm.UserService.userLocation.coordinates[0].longitude;
-    // vm.markerLocationLatitude = vm.UserService.userLocation.coordinates[0].latitude;
+    vm.userNeeds = UserService.userNeeds;
 
     vm.map = {};
     NgMap.getMap("map").then(function (map) {
@@ -23,11 +20,16 @@ myApp.controller('ThankyouController', function ($http, $location, UserService, 
         vm.userInformationObject.user = user
         console.log('user information object in show deets', vm.userInformationObject.user)
         vm.map.showInfoWindow('InfoWindow', this)
-    }
+    };
 
+    vm.deleteNeeds = function (userid) {
+        console.log('user needs getting delete', userid)
+        UserService.deleteUserNeeds(userid)
+    };
 
-    // vm.markerLocationLongitude = vm.longitude;
-    // vm.markerLocationLatitude = vm.latitude;
+    // vm.createAlert = function () {
+    //     ngAlertsMngr.add('testing' , 'warning');
+    // };
 
     console.log('coordinate', UserService.userLocation);
     console.log('user information', vm.userInformationObject)
