@@ -2,7 +2,7 @@
 
 <h4>Here are all the user requests</h4>
 
-{{hc.allUserInformation.list}}
+
 
 <div class='container'>
 
@@ -11,8 +11,6 @@
 
         <info-window id='InfoWindow'>
             <div ng-non-bindable="">
-
-                {{hc.allUserInformation.userhelp.id}}
                 <br> {{hc.allUserInformation.userhelp.firstname}}
                 <br> {{hc.allUserInformation.userhelp.lastname}}
                 <br> {{hc.allUserInformation.userhelp.phonenumber}}
@@ -20,11 +18,13 @@
                 <div ng-click="hc.allUserInformation.userhelp.show = !hc.allUserInformation.userhelp.show">Emergency Request: {{hc.allUserInformation.userhelp.need}}</div>
 
                 <div ng-if="hc.allUserInformation.userhelp.show">
-                    {{userhelp}}
-                        <div ng-repeat="grocery in hc.allUserInformation.userhelp">
-                            {{grocery.groceries}}
+                    
+                         <div ng-repeat="grocery in hc.allUserInformation.userhelp.array_agg">
+                            {{grocery}}
                         
-                        </div>
+                        </div> 
+
+       
                     </div>
 
 

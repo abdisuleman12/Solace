@@ -96,6 +96,23 @@ router.post('/userneeds', function (req, res, next) {
     groceries: req.body.groceries,
   };
   console.log('user needs :', saveUserNeeds);
+  /*
+  { need: 'groceries', groceries: [ 'beef', 'chicken' ] }
+  */
+
+  // loop thru saveUserNeeds.grocieries
+  // concatentate into a string
+  // save to db
+  // output: beef, chicken
+  var emptyUserNeeds = "";
+  for(var i = 0; i < saveUserNeeds.groceries.length ; i++) {
+    emptyUserNeeds += saveUserNeeds.groceries[i];
+    if(i < saveUserNeeds.groceries.length - 1) {
+      emptyUserNeeds += ", ";
+    } ;
+  }
+
+  console.log('concatentated string in user needs' , emptyUserNeeds)
 
   pool.connect(function (err, client, done) {
     if (err) {
@@ -103,7 +120,7 @@ router.post('/userneeds', function (req, res, next) {
       res.sendStatus(500);
     }
     client.query("INSERT INTO userneeds (user_id, need, groceries) VALUES ($1, $2, $3)",
-      [user_id, saveUserNeeds.need, saveUserNeeds.groceries],
+      [user_id, saveUserNeeds.need, emptyUserNeeds],
       function (err, result) {
         done();
 

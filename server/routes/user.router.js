@@ -98,7 +98,11 @@ router.get('/allrequestinformation', function (req, res, next) {
         console.log("Error connecting: ", err);
         res.sendStatus(500);
       }
-      client.query("SELECT * FROM userprofileinformation JOIN userneeds ON userprofileinformation.user_id = userneeds.user_id ",
+      client.query(`select userneeds.user_id, latitude, longitude, firstname, lastname, address, householdsize, phonenumber, array_agg (groceries) 
+      from userprofileinformation 
+      join userneeds
+      on userprofileinformation.user_id = userneeds.user_id
+group by userneeds.user_id, latitude, longitude, firstname, lastname, address, householdsize, phonenumber`,
         function (err, result) {
           done();
           if (err) {
@@ -141,35 +145,6 @@ router.get('/userneeds', function (req, res, next) {
     });
 
   };
-
-});
-
-router.put('/updateneeds/:id', function(req, res) {
-  console.log('put /user/updateneeds route', req.body);
-
-
-  // pool.connect(function(err, client, done) {
-  //   if(err) {
-  //     console.log("Error connecting to db: ", err);
-  //     res.sendStatus(500);
-  //     next(err); // verfiy what this line is doing
-  //   } else {
-  //     // TO DO FIGURE OUT WHY THIS ISN'T RETURNING
-  //   var queryText = 'UPDATE "cravings" SET "strength_of_desire" = $1, "location" = $2, "notes" = $3 WHERE "id" = $4;';
-  //   client.query(queryText, [upCrave.desire, upCrave.location, upCrave.notes, upCrave.crave_id], function (errorMakingQuery, result) {
-  //     done();
-  //     if(errorMakingQuery) {
-  //       console.log('Attempted to query with', queryText);
-  //       console.log('Error making query', errorMakingQuery);
-  //       res.sendStatus(500);
-  //     } else {
-  //       console.log('/crave result:', result.rows);
-  //       // Send back the results
-  //       res.sendStatus(200);
-  //     }
-  //   });
-  //   }
-  // });
 
 });
 
