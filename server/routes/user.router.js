@@ -98,7 +98,7 @@ router.get('/allrequestinformation', function (req, res, next) {
         console.log("Error connecting: ", err);
         res.sendStatus(500);
       }
-      client.query(`select userneeds.user_id, latitude, longitude, firstname, lastname, address, householdsize, phonenumber, array_agg (groceries) 
+      client.query(`select userneeds.user_id, latitude, longitude, firstname, lastname, address, householdsize, phonenumber, array_agg (Groceries) 
       from userprofileinformation 
       join userneeds
       on userprofileinformation.user_id = userneeds.user_id

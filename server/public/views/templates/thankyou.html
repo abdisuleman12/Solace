@@ -9,7 +9,7 @@
 
     <h4>Thank you for submitting your request</h4>
 
-    {{tc.userNeeds.needs[0].need}}
+    {{tc.userNeeds.needs[0]}}
 
     <!-- {{tc.markerLocationLatitude}}
     {{tc.markerLocationLongitude}} -->
@@ -24,18 +24,24 @@
                     <br> {{tc.userInformationObject.list[0].lastname}}
                     <br> {{tc.userInformationObject.list[0].phonenumber}}
                     <br> {{tc.userInformationObject.list[0].address}}
-                    <div ng-click="show = !show">Emergency Request: {{tc.userNeeds.needs[0].need}}</div>
+                    <div ng-click="show = !show">Emergency Request: {{tc.userNeeds.needs[0].Need}}</div>
 
-                    <div ng-if="show"> 
-                        
-                        <div ng-repeat = "needitems in tc.userNeeds.needs">
-                            {{needitems.groceries}}
+                    <div ng-if="show">
+
+                        <div ng-repeat="needitems in tc.userNeeds.needs">
+                            <div ng-if="tc.userNeeds.needs[0].Groceries">
+                                {{needitems.Groceries}}
+                            </div>
+                            <div ng-if="tc.userNeeds.needs[0].Clothing">
+                                {{needitems.Clothing}}
+                            </div>
                         </div>
-                        
-                       
+
+
                     </div>
 
-                    <br> <md-button class="md-secondary md-raised" ng-click="tc.deleteNeeds(tc.userNeeds.needs[0].user_id)">Delete</md-button>
+                    <br>
+                    <md-button class="md-secondary md-raised" ng-click="tc.deleteNeeds(tc.userNeeds.needs[0].user_id)">Need met!</md-button>
 
                 </div>
             </info-window>
@@ -43,26 +49,9 @@
     </div>
 
     <div ng-if="!tc.userLocation.coordinates.longitude && !tc.userLocation.coordinates[0].latitude">
-        You havent registered any profile information
+        Mhmm... there doesn't seem to be any profile information you registered.
 
     </div>
-
-    <!-- "{lat: "+{{tc.userLocation.coordinates[0].latitude}}+", lng: "+{{tc.userLocation.coordinates[0].longitude}}+"}"  -->
-
-    <!-- "["+{{tc.userLocation.coordinates[0].latitude}}+ ","+{{tc.userLocation.coordinates[0].longitude}}+"]" -->
-
-
-    <!-- <marker position="[44.9614, -93.2876]"></marker> -->
-
-    <!-- firstname : {{tc.userInformationObject.list[0].firstname}}
-
-lastname : {{tc.userInformationObject.list[0].lastname}}
-
-address : {{tc.userInformationObject.list[0].address}}
-
-householdsize : {{tc.userInformationObject.list[0].householdsize}}
-
-phone number : {{tc.userInformationObject.list[0].phonenumber}} -->
 
 
 

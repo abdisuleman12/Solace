@@ -92,8 +92,9 @@ router.post('/userneeds', function (req, res, next) {
   var user_id = req.body.user_id
 
   var saveUserNeeds = {
-    need: req.body.need,
-    groceries: req.body.groceries,
+    Need: req.body.Need,
+    Groceries: req.body.Groceries,
+    Clothing: req.body.Clothing,
   };
   console.log('user needs :', saveUserNeeds);
   /*
@@ -104,23 +105,22 @@ router.post('/userneeds', function (req, res, next) {
   // concatentate into a string
   // save to db
   // output: beef, chicken
-  var emptyUserNeeds = "";
-  for(var i = 0; i < saveUserNeeds.groceries.length ; i++) {
-    emptyUserNeeds += saveUserNeeds.groceries[i];
-    if(i < saveUserNeeds.groceries.length - 1) {
-      emptyUserNeeds += ", ";
-    } ;
-  }
+  // var emptyUserNeeds = "";
+  // for(var i = 0; i < saveUserNeeds.groceries.length ; i++) {
+  //   emptyUserNeeds += saveUserNeeds.groceries[i];
+  //   if(i < saveUserNeeds.groceries.length - 1) {
+  //     emptyUserNeeds += ", ";
+  //   } ;
+  // }
 
-  console.log('concatentated string in user needs' , emptyUserNeeds)
 
   pool.connect(function (err, client, done) {
     if (err) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     }
-    client.query("INSERT INTO userneeds (user_id, need, groceries) VALUES ($1, $2, $3)",
-      [user_id, saveUserNeeds.need, emptyUserNeeds],
+    client.query('INSERT INTO userneeds (user_id, "Need", "Groceries", "Clothing") VALUES ($1, $2, $3, $4)',
+      [user_id, saveUserNeeds.Need, saveUserNeeds.Groceries, saveUserNeeds.Clothing],
       function (err, result) {
         done();
 

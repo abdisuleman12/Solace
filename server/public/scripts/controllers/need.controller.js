@@ -7,11 +7,15 @@ myApp.controller('NeedController', function ($http, $location, UserService) {
 
 
     vm.userNeed = {
-        groceries: [],
+        Groceries: null,
+        Clothing: null,
+        Household_Products: null,
+        Over_The_Counter_Medicine: null
+        
     };
 
     vm.needs = {
-        list: ['none','groceries', 'clothing', 'household products', 'over-the-counter medicine'],
+        list: ['None','Groceries', 'Clothing', 'Household Products', 'Over-The-Counter Medicine'],
     };
 
     vm.addingNeeds = function () {
