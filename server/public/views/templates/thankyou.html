@@ -3,13 +3,12 @@
 
 <div class='container'>
 
-    {{tc.userNeeds.needs[0].groceries}}
 
     <!-- "["+{{variable1}}+", "+{{variable2}}+"]" -->
 
     <h4>Thank you for submitting your request</h4>
 
-    {{tc.userNeeds.needs[0]}}
+    {{tc.userNeeds.needs}}
 
     <!-- {{tc.markerLocationLatitude}}
     {{tc.markerLocationLongitude}} -->
@@ -29,10 +28,10 @@
                     <div ng-if="show">
 
                         <div ng-repeat="needitems in tc.userNeeds.needs">
-                            <div ng-if="tc.userNeeds.needs[0].Groceries">
+                            <div ng-if="needitems.Groceries">
                                 {{needitems.Groceries}}
                             </div>
-                            <div ng-if="tc.userNeeds.needs[0].Clothing">
+                            <div ng-if="needitems.Clothing">
                                 {{needitems.Clothing}}
                             </div>
                         </div>

@@ -17,10 +17,13 @@
 -- );
 
 
--- CREATE TABLE "userneeds" (
+-- -CREATE TABLE "userneeds" (
 -- "id" serial primary key,
 -- "user_id" integer references users not null,
--- "need" varchar(100) not null,
--- "groceries" varchar(1000) not null
+-- "Need" varchar(100) not null,
+-- "Groceries" varchar(1000),
+-- "Clothing" varchar(1000)
+
+-- );
 
 -- );

@@ -54,6 +54,9 @@ myApp.config(function ($routeProvider, $locationProvider) {
       resolve: {
         getuser: function (UserService) {
           return UserService.getuser();
+        },
+        getUserNeeds: function (UserService) {
+          return UserService.getUserNeeds();
         }
       }
     }).when('/currentneeds', {

@@ -3,13 +3,20 @@
 
 <div class="container">
 
+    {{cn.currentUserNeeds.needs}}
 
-    <h3> You Currently have a need for:</h3>
-    {{cn.currentUserNeeds.needs[0].need}}
+
+    <h3> You currently have a need for:</h3>
+    {{cn.currentUserNeeds.needs[0].Need}}
 
     <h3> Your cart consists of:</h3>
-     <div ng-repeat=" item in cn.currentUserNeeds.needs">
-        {{item.groceries}}
-    </div> 
+    <div ng-repeat=" item in cn.currentUserNeeds.needs">
+        <div ng-if="cn.currentUserNeeds.needs[0].Groceries">
+            {{item.Groceries}}
+        </div>
+        <div ng-if="cn.currentUserNeeds.needs[0].Clothing">
+            {{item.Clothing}}
+        </div>
+    </div>
 
 </div>
