@@ -131,7 +131,7 @@ router.get('/userneeds', function (req, res, next) {
         console.log("Error connecting: ", err);
         res.sendStatus(500);
       }
-      client.query("SELECT * FROM userneeds WHERE user_id = $1", [userid],
+      client.query('SELECT * FROM userneeds WHERE user_id = $1 ', [userid],
         function (err, result) {
           done();
           if (err) {

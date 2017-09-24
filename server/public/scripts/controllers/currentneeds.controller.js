@@ -10,4 +10,5 @@ myApp.controller('CurrentNeedsController', function (UserService) {
     vm.currentUserNeeds = UserService.userNeeds
 
 
+
 });

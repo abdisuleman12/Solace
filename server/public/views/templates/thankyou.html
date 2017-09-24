@@ -8,7 +8,6 @@
 
     <h4>Thank you for submitting your request</h4>
 
-    {{tc.userNeeds.needs}}
 
     <!-- {{tc.markerLocationLatitude}}
     {{tc.markerLocationLongitude}} -->
@@ -23,22 +22,28 @@
                     <br> {{tc.userInformationObject.list[0].lastname}}
                     <br> {{tc.userInformationObject.list[0].phonenumber}}
                     <br> {{tc.userInformationObject.list[0].address}}
-                    <div ng-click="show = !show">Emergency Request: {{tc.userNeeds.needs[0].Need}}</div>
 
-                    <div ng-if="show">
-
-                        <div ng-repeat="needitems in tc.userNeeds.needs">
-                            <div ng-if="needitems.Groceries">
-                                {{needitems.Groceries}}
-                            </div>
-                            <div ng-if="needitems.Clothing">
-                                {{needitems.Clothing}}
-                            </div>
+                    <div ng-repeat="need in tc.userNeeds.needs">
+                        <div ng-click="show = !show">
+                            Emergency Request: {{need.Need}}
                         </div>
 
+                        <div ng-if="show">
 
+
+                            <div ng-if="need.Need =='Groceries'">
+                            {{need.Groceries}}
+                            </div>
+
+                            <div ng-if="need.Need =='Clothing'">
+                                {{need.Clothing}}
+                            </div>
+
+
+
+
+                        </div>
                     </div>
-
                     <br>
                     <md-button class="md-secondary md-raised" ng-click="tc.deleteNeeds(tc.userNeeds.needs[0].user_id)">Need met!</md-button>
 
