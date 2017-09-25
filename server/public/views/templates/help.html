@@ -1,6 +1,8 @@
 <div ng-include="'views/partials/userhelpnav.html'"></div>
+<div layout="column" layout-align="center center">
+  <h4>Here are all the user requests</h4>
 
-<h4>Here are all the user requests</h4>
+</div>
 
 
 
@@ -18,13 +20,13 @@
                 <div ng-click="hc.allUserInformation.userhelp.show = !hc.allUserInformation.userhelp.show">Emergency Request: {{hc.allUserInformation.userhelp.need}}</div>
 
                 <div ng-if="hc.allUserInformation.userhelp.show">
-                    
+
                          <div ng-repeat="grocery in hc.allUserInformation.userhelp.array_agg">
                             {{grocery}}
-                        
-                        </div> 
 
-       
+                        </div>
+
+
                     </div>
 
 

@@ -1,18 +1,28 @@
 body, html {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  font-size: 14px;
+  font-family: 'Forum', sans-serif;
+  font-size: 18px;
+  background-color: rgb(255, 254, 227);
 }
 
 .instructions .container h1 {
-  font-size: 32px;
+  font-family: 'Comfortaa', sans-serif;
+  text-transform: uppercase;
+  font-size: 5em;
+  margin: 0;
+  color: rgb(255, 250, 121);
+  letter-spacing: 40px;
   font-weight: 600;
+  text-shadow: 5px 5px 5px white;
+}
+
+.instructions .container h3 {
+  color: white;
 }
 
 .instructions {
-  background-color: #333333;
-  color: #DDDDDD;
+  background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(146,193,229,1) 100%);
   padding: 15px;
 }
 
@@ -91,8 +101,20 @@ li a:hover {
 
 }
 
+md-nav-bar {
+  background-color: white;
+  border-bottom: rgb(77, 77, 77);
+}
 
+md-nav-bar.md-default-theme .md-button._md-nav-button.md-unselected, md-nav-bar .md-button._md-nav-button.md-unselected {
+  color: rgb(29, 111, 205);
+}
 
+md-select {
+  background-color: white;
+}
+.navbar {
 
-
-
+  color: white;
+  text-transform: uppercase;
+}

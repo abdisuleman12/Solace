@@ -1,28 +1,30 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
 
-<div class="container">
+<div class="container" layout="column" layout-align="center center">
 
-    {{cn.currentUserNeeds.needs}}
+    <!-- {{cn.currentUserNeeds.needs}} -->
+
+    <div layout="column" layout-align="space-around start">
+      <h3> You currently have a need for:</h3>
+      <div ng-repeat="needs in cn.currentUserNeeds.needs">
+
+          <p>{{needs.Need}}</p>
+      </div>
 
 
-    <h3> You currently have a need for:</h3>
-    <div ng-repeat="needs in cn.currentUserNeeds.needs">
-        
-        <p>{{needs.Need}}</p>
-    </div>
- 
+      <h3> Your cart consists of:</h3>
+      <div ng-repeat=" needs in cn.currentUserNeeds.needs">
 
-    <h3> Your cart consists of:</h3>
-    <div ng-repeat=" needs in cn.currentUserNeeds.needs">
+              {{needs.Groceries}}
+              {{needs.Clothing}}
+              {{needs.HouseHold}}
+          </div>
+          <div ng-if="cn.currentUserNeeds.needs[0].Clothing">
+              {{item.Clothing}}
+          </div>
+      </div>
 
-            {{needs.Groceries}}
-            {{needs.Clothing}}
-            {{needs.HouseHold}}
-        </div>
-        <div ng-if="cn.currentUserNeeds.needs[0].Clothing">
-            {{item.Clothing}}
-        </div>
     </div>
 
 </div>

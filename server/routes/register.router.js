@@ -121,7 +121,7 @@ router.post('/userneeds', function (req, res, next) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     }
-    client.query('INSERT INTO userneeds (user_id, "Need", "Groceries", "Clothing", "Household-Products", "Over-The-Counter-Medicine") VALUES ($1, $2, $3, $4, $5, $6)',
+    client.query('INSERT INTO userneeds (user_id, "Need", "Groceries", "Clothing", "householdproducts", "medicine") VALUES ($1, $2, $3, $4, $5, $6)',
       [user_id, saveUserNeeds.Need, saveUserNeeds.Groceries, saveUserNeeds.Clothing, saveUserNeeds.Household_Products, saveUserNeeds.Over_The_Counter_Medicine],
       function (err, result) {
         done();
