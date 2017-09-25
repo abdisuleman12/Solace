@@ -1,16 +1,21 @@
-<div ng-controller = "UserController as uc" class="navbar">
-  <div class="container">
-    <ul>
-      <li><a href="#/user">Home</a></li>
-      <li><a href="#/info">Profile Info</a></li>
-      <li><a href="#/currentneeds">Current Cart </a></li>
-      <li><a href="#/updateneed"> Update your need request </a></li>
-      <li><a href="#/thankyou">View your request</a></li>
-    </ul>
-  </div>
 
 
-  <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
-
-
+<div ng-controller="UserController as uc">
+  <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+    <md-nav-item md-nav-href="#/user" name="home">
+      Home
+    </md-nav-item>
+    <md-nav-item md-nav-href="#/info" name="info">
+      Profile Info
+    </md-nav-item>
+    <md-nav-item md-nav-href="#/currentneeds" name="currentneeds">
+      Current Cart
+    </md-nav-item>
+    <md-nav-item md-nav-href="#/updateneed" name="updateneed">
+      Update your need request
+    </md-nav-item>
+    <md-nav-item md-nav-href="#/thankyou" name="thankyou">
+      View your request
+    </md-nav-item>
+  </md-nav-bar>
 </div>

@@ -4,13 +4,10 @@
 <div class='container'>
 
 
-    <!-- "["+{{variable1}}+", "+{{variable2}}+"]" -->
+{{tc.userNeeds.needs}}
 
     <h4>Thank you for submitting your request</h4>
 
-
-    <!-- {{tc.markerLocationLatitude}}
-    {{tc.markerLocationLongitude}} -->
 
     <div ng-if="tc.userLocation.coordinates[0].longitude && tc.userLocation.coordinates[0].latitude">
 
@@ -37,6 +34,15 @@
 
                             <div ng-if="need.Need =='Clothing'">
                                 {{need.Clothing}}
+                            </div>
+
+                            <div ng-if="need.Need =='Household-Products'">
+                                {{need.Household-Products}}
+                            </div>
+
+
+                            <div ng-if="need.Need == 'Over-The-Counter-Medicine'">
+                                {{need.Over-The-Counter-Medicine}}
                             </div>
 
 

@@ -16,14 +16,17 @@
 -- phonenumber bigint UNIQUE
 -- );
 
-
--- -CREATE TABLE "userneeds" (
+-- CREATE TABLE "userneeds" (
 -- "id" serial primary key,
 -- "user_id" integer references users not null,
 -- "Need" varchar(100) not null,
 -- "Groceries" varchar(1000),
--- "Clothing" varchar(1000)
+-- "Clothing" varchar(1000),
+-- "Household-Products" varchar (1000),
+-- "Over-The-Counter-Medicine" varchar(1000)
 
 -- );
 
 -- );
+
+-- DATABASE IS CALLED : 'SOLODB'

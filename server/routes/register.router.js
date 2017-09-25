@@ -95,6 +95,8 @@ router.post('/userneeds', function (req, res, next) {
     Need: req.body.Need,
     Groceries: req.body.Groceries,
     Clothing: req.body.Clothing,
+    Household_Products: req.body.Household_Products,
+    Over_The_Counter_Medicine: req.body.Over_The_Counter_Medicine,
   };
   console.log('user needs :', saveUserNeeds);
   /*
@@ -119,8 +121,8 @@ router.post('/userneeds', function (req, res, next) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     }
-    client.query('INSERT INTO userneeds (user_id, "Need", "Groceries", "Clothing") VALUES ($1, $2, $3, $4)',
-      [user_id, saveUserNeeds.Need, saveUserNeeds.Groceries, saveUserNeeds.Clothing],
+    client.query('INSERT INTO userneeds (user_id, "Need", "Groceries", "Clothing", "Household-Products", "Over-The-Counter-Medicine") VALUES ($1, $2, $3, $4, $5, $6)',
+      [user_id, saveUserNeeds.Need, saveUserNeeds.Groceries, saveUserNeeds.Clothing, saveUserNeeds.Household_Products, saveUserNeeds.Over_The_Counter_Medicine],
       function (err, result) {
         done();
 

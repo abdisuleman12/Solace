@@ -15,7 +15,7 @@ myApp.controller('NeedController', function ($http, $location, UserService) {
     };
 
     vm.needs = {
-        list: ['None','Groceries', 'Clothing', 'Household Products', 'Over-The-Counter Medicine'],
+        list: [ 'Groceries', 'Clothing', 'Household-Products', 'Over-The-Counter-Medicine'],
     };
 
     vm.addingNeeds = function () {
