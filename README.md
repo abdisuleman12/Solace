@@ -58,8 +58,8 @@ CREATE TABLE "userneeds" (
 ```
 
 ## Documentation
-
-Link to my scope document , [Solace] (https://docs.google.com/document/d/1XEgjlr63lMORVqTpCro4AFr8vVeHXvtWEQDNokEt_m4/edit?usp=sharing)
+Link to my scope document
+- [Solace](https://docs.google.com/document/d/1XEgjlr63lMORVqTpCro4AFr8vVeHXvtWEQDNokEt_m4/edit?usp=sharing)
 
 
 ## Authors
