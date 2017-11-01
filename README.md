@@ -1,10 +1,14 @@
-# Name of Project
+Solace
 
-One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
+A full-stack application that allows user's to make emergency request's all from a connected device.
 
 ## Built With
 
-List technologies and frameworks here
+SEAN Stack
+- Postgres
+- Express.js
+- Angular
+- Node.js
 
 ## Getting Started
 
