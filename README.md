@@ -20,6 +20,8 @@ Install
 
 - [Node.js](https://nodejs.org/en/)
 - Postico 
+- ``` run npm install at the project directory in the terminal ```
+- Open the application in your code editor
 
 ### Installing
 
